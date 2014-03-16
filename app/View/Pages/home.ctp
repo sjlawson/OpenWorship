@@ -1,50 +1,17 @@
+<h2>To Do:</h2>
+<ul>
+	<li>add user creation, authentication</li>
+	<li>Make main event view screen editable - unified creation/exhibition</li>
+</ul>
 
-
-<!--<video id="video_background" loop="loop" muted="muted" volume="0" > 
-<source src="videos/bgloop.mp4" type="video/mp4"> 
-Video not supported </video> -->
-
-<button onclick="loadProjectorWindow()">Open Projector Window</button> |
-<button onclick="closeProjector()">Close Projector Window</button>
-<br />
-
-<div id="service_menu">
-    <p style="background-color: #A2D3A2">God of Wonders</p>
-    <p>Glory Come Down</p>
-</div>
-
-<div id="slides">
-<div class="slide_content" onclick="change_content(this)" >
-    <p>Lord of all creation</p>
-    <p>Of water, earth, and sky</p>
-    <p>The heavens are your tabernacle</p>
-    <p>Glory to the Lord on high</p>
-</div>
-    
-<div class="slide_content" onclick="change_content(this)" >
-    <p>God of wonders beyond <br />our galaxy,</p>
-    <p>You are holy, holy.</p>
-    <p>The universe reflects <br />your majesty,</p>
-    <p>You are holy, holy.</p>
-</div>
-
-<div class="slide_content" onclick="change_content(this)" >
-    <p>Lord of Heaven and Earth,</p>
-    <p>Lord of Heaven and Earth</p>
-</div>
-<div class="slide_content" onclick="change_content(this)" >
-    <p>Halleluja,</p>
-    <p>To the Lord of Heaven and Earth</p>
-</div>
-</div>
-
-<div id="vidPreviewContainer">
-    <div id="lyric_block">
-    <p>Lord of all creation</p>
-    <p>Of water, earth, and sky</p>
-    <p>The heavens are your tabernacle</p>
-    <p>Glory to the Lord on high</p>
-    </div>
-</div>    
-
-    
+<h2>Links:</h2>
+<ul>
+	<li><a href="EventScreen">Event View Screen</a></li>
+	<li><a href="Users">Users</a></li>
+		
+	The following views most likely will be edited in light boxes... if at all
+	<li><a href="ContentSlides" >Content slides</a></li>
+	<li><a href="SongSlides">Song slides</a></li>
+	<li><a href="Resources">Resources</a></li>
+	<li><a href="Events">Events</a></li>
+</ul>

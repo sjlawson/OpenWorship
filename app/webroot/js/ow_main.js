@@ -6,7 +6,7 @@
     }
     
     function loadProjectorWindow() {
-        this.myNewWindow = window.open();
+        this.myNewWindow = window.open(null, '_blank','width=800,height=600');
         myNewWindow.document.body.style.backgroundColor="black";
         
         
