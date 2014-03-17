@@ -34,6 +34,8 @@ $cakeDescription = __d('VOW', 'Vessel Open Worship');
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
+		echo $this->Html->script('jquery-current');
+		echo $this->Html->script('tinymce/tinymce.min.js');
 	?>
 </head>
 <body>

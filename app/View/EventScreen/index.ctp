@@ -51,4 +51,37 @@ Video not supported </video> -->
     <p>Glory to the Lord on high</p>
     </div>
 </div>    
+    <script type="text/javascript">
+        var slideData;
+        $.get("SongSlides/loaddata?id=1", function( data ) {
+            slideData = $.parseJSON(data);
+            var slideArr = slideData.content.split("<hr />");
+            var slideContent = "";
+            for(var slide in slideArr) {
+                slideContent += "<div class='slide_content'>" + slideArr[slide] + "</div>";
+            }
+            
+  $( "#slides2" ).html( slideContent );
+  $('.slide_content').click(function() { change_content(this); });
+});
+        
+    </script>
+<div id="slides">
+    <div id="slides2">
+        
+        
+    </div>
 
+    
+<?php
+// print_r($currentSong);
+// $slides = explode("<hr />",$currentSong['SongSlide']['content']);
+
+// foreach($slides as $slide) {
+ //   echo "<div class='slide_content'>";
+ //   echo $slide;
+ //   echo "</div>";
+//}
+
+?>
+</div>

@@ -7,14 +7,14 @@ App::uses('AppController', 'Controller');
  * @property PaginatorComponent $Paginator
  */
 class SongSlidesController extends AppController {
-
+	public $helpers = array('Js' => array('Jquery'));
 /**
  * Components
  *
  * @var array
  */
 	public $components = array('Paginator');
-
+	
 /**
  * index method
  *
@@ -25,6 +25,13 @@ class SongSlidesController extends AppController {
 		$this->set('songSlides', $this->Paginator->paginate());
 	}
 
+	public function loaddata() {
+		$this->layout = 'ajax';
+		$id = $this->request->query['id'];
+		$options = array('conditions' => array('SongSlide.' . $this->SongSlide->primaryKey => $id));
+		$this->set('songSlide', $this->SongSlide->find('first', $options));
+	}
+	
 /**
  * view method
  *
@@ -67,6 +74,7 @@ class SongSlidesController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+		
 		if (!$this->SongSlide->exists($id)) {
 			throw new NotFoundException(__('Invalid song slide'));
 		}

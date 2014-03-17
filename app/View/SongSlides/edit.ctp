@@ -1,3 +1,13 @@
+
+
+<script type="text/javascript"> 
+    tinyMCE.init({ 
+        theme : "modern",
+	toolbar: "hr",
+        mode : "textareas", 
+        convert_urls : false 
+    }); 
+</script>
 <div class="songSlides form">
 <?php echo $this->Form->create('SongSlide'); ?>
 	<fieldset>

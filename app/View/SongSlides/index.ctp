@@ -22,7 +22,7 @@
 		<td><?php echo h($songSlide['SongSlide']['title']); ?>&nbsp;</td>
 		<td><?php echo h($songSlide['SongSlide']['author']); ?>&nbsp;</td>
 		<td><?php echo h($songSlide['SongSlide']['license']); ?>&nbsp;</td>
-		<td><?php echo h($songSlide['SongSlide']['content']); ?>&nbsp;</td>
+		<td><?php echo substr(h($songSlide['SongSlide']['content']), 0, 200); ?>&nbsp;</td>
 		<td><?php echo h($songSlide['SongSlide']['custom_styles']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $songSlide['SongSlide']['_id'])); ?>
