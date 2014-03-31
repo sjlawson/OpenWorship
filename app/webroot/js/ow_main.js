@@ -1,12 +1,21 @@
  var myNewWindow;
     var currentSlide;
+    var lyricElement;
+    var previewElement;
     
     function closeProjector() {
         myNewWindow.close();
     }
     
+    function initProjectorWindow() {
+        var NewWindow = window.open("about:blank", '_blank','width=800,height=600');
+        alert("Preparing window, press okay to continue");
+        return NewWindow;
+    }
+    
     function loadProjectorWindow() {
-        this.myNewWindow = window.open(null, '_blank','width=800,height=600');
+        myNewWindow = initProjectorWindow();
+            
         myNewWindow.document.body.style.backgroundColor="black";
         
         
@@ -43,17 +52,44 @@
                 
                 vidContainer.appendChild(videoElement);
               myNewWindow.document.body.appendChild(vidContainer);
-              
+                        
+                lyricElement = myNewWindow.document.getElementById("proj_lyric_block");
+                
+    }
+    
+    function loadLiveSlides(id) {
+        
+        var slideData;
+        $.get("SongSlides/loaddata?id="+id, function( data ) {
+            slideData = $.parseJSON(data);
+            var slideArr = slideData.content.split("<hr />");
+            var slideContent = "";
+            for(var slide in slideArr) {
+                slideContent += "<div class='slide_content'>";
+                slideContent += slideArr[slide] != undefined ? slideArr[slide] : "";
+                slideContent += "</div>";
+            }
+            
+                $( "#slides" ).html( slideContent );
+                $('.slide_content').click(function() { change_content(this); });
+              });
+        
+         var loadedSlides = $("#slides").children();
+         
+         //currentSlide = loadedSlides[0];
+         // alert(document.getElementById("slides").childNodes[0]);
+        document.getElementById("slides").children[0].style.backgroundColor = "#A2D3A2";
+        
     }
     
     function change_content(content_element) {
-        var content = content_element.innerHTML;
+        var content = (content_element != undefined ) ? content_element.innerHTML : "";
         
         if(myNewWindow != null) {
-            var lyricElement = myNewWindow.document.getElementById("proj_lyric_block");
+          //  lyricElement = myNewWindow.document.getElementById("proj_lyric_block");
             lyricElement.innerHTML = content;
         }
-        var previewElement = document.getElementById("lyric_block");        
+        //previewElement = document.getElementById("lyric_block");        
         previewElement.innerHTML = content;
 
         var slideChildren = document.getElementById("slides").childNodes;
@@ -66,10 +102,17 @@
         this.currentSlide = content;
         content_element.style.backgroundColor="#A2D3A2"
     }
-    //document.addEventListener("DOMContentLoaded", function() {
-    //    
-    //});
+    
+    function clearSlide() {
+        if(myNewWindow != undefined) {
+           lyricElement.innerHTML = "";
+           previewElement.innerHTML = "";
+        }
+    }
+    
     $(document).ready(function() {
-        currentSlide = document.getElementById("slides").children[0].innerHTML;
-        document.getElementById("slides").children[0].style.backgroundColor = "#A2D3A2";
+        previewElement = document.getElementById("lyric_block"); 
+        loadLiveSlides(1);
+        // currentSlide = document.getElementById("slides").children[0].innerHTML;
+        // document.getElementById("slides").children[0].style.backgroundColor = "#A2D3A2";
     });
