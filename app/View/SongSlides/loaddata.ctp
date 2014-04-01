@@ -1,2 +1,2 @@
 <?php
-print json_encode($songSlide['SongSlide']);
+print json_encode($songSlide);

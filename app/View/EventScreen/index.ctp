@@ -9,27 +9,38 @@ $this->Html->css('vidwinstyles', null, array('inline' => false));
 <source src="videos/bgloop.mp4" type="video/mp4"> 
 Video not supported </video> -->
 
-<button onclick="loadProjectorWindow()">Open Projector Window</button> |
-<button onclick="closeProjector()">Close Projector Window</button> |
-<button onclick="clearSlide()">Black Screen</button>
+<button id="loadProjector" onclick="loadProjectorWindow()">Open Projector Window</button> |
+<button id="closeProjector" onclick="closeProjector()">Close Projector Window</button> |
+<button id="clearSlide" onclick="blackScreen()">Black Screen</button>
 <br />
 
-<div id="service_menu">
-    <p style="background-color: #A2D3A2">God of Wonders</p>
-    <p>Glory Come Down</p>
+<div class='column'>
+    <div id="service_menu">
+        <p style="background-color: #A2D3A2">God of Wonders</p>
+        <p>Glory Come Down</p>
+    </div>
 </div>
 
-
-
-<div id="vidPreviewContainer">
-    <div id="lyric_block">
+<div class='column'>
+    <div id="vidPreviewContainer">
+        <div id="preview_content_block">
+        </div>
     </div>
-</div>    
-    <script type="text/javascript">
+    
+    <div class="state_button">Go Live!</div>
+    <div class="spacer"></div>
+    <div class="state_button">Edit Slide</div>
+    <div class="state_button">Add Slide</div>
+    
+    
+</div>
 
-    </script>
-<div id="slides">
+<div class='column'>
+    <div id="slides"></div>
+</div>
 
-
-
+<div class='column'>
+    <div id="vidLiveContainer">
+        <div id="live_content_block"></div>
+    </div>
 </div>
