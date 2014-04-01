@@ -58,8 +58,19 @@ class SongSlide extends AppModel {
 		)
 	);
         
-        public function get_songslid_by_id($id) {
-            return $this->find($id);
+        public function getSongSlideById($id) {
+            
+            $query = "SELECT
+                    s.title AS song_title, s.author AS song_author,
+                        s.license AS song_license, s.content AS song_content, 
+                    r.title AS resource_title, r.url AS resource_url, r.resource_type AS resource_type
+                FROM " . $this->tablePrefix . $this->table ." s
+                LEFT JOIN " . $this->tablePrefix ."resources r ON
+                    r._id = s._bg_resource_id
+                WHERE
+                    s._id = $id";
+            $result = $this->query($query);
+            return $result[0];
         }
         
 }

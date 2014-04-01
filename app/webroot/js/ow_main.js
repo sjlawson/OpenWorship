@@ -1,10 +1,15 @@
- var myNewWindow;
+
+    var myNewWindow;
     var currentSlide;
     var lyricElement;
-    var previewElement;
+    var liveViewPort;
+    var videoElement;
+    var bgUrl;
+    var bgType;
     
     function closeProjector() {
         myNewWindow.close();
+        myNewWindow = null;
     }
     
     function initProjectorWindow() {
@@ -14,8 +19,10 @@
     }
     
     function loadProjectorWindow() {
+        if(myNewWindow == undefined || myNewWindow == null) {
+
         myNewWindow = initProjectorWindow();
-            
+        myNewWindow.onbeforeunload = function(){ myNewWindow = null; } 
         myNewWindow.document.body.style.backgroundColor="black";
         
         
@@ -25,7 +32,7 @@
                     csslink.rel = "stylesheet";
                     myNewWindow.document.getElementsByTagName("head")[0].appendChild(csslink);
 
-                var videoElement = myNewWindow.document.createElement("video");
+                videoElement = myNewWindow.document.createElement("video");
                 videoElement.setAttribute("id","proj_video_background");
                 videoElement.setAttribute("preload","auto");
             
@@ -35,13 +42,13 @@
                 videoElement.setAttribute("volume","0");
                 
                 var vidSrc = myNewWindow.document.createElement("source");
-                vidSrc.setAttribute("src","http://workspace.com/OpenWorship/videos/bgloop.mp4");
-                vidSrc.setAttribute("type","video/mp4");
+                vidSrc.setAttribute("src", bgUrl);
+                vidSrc.setAttribute("type",bgType);
                 
                 videoElement.appendChild(vidSrc);
                 
                 var lyric_block = myNewWindow.document.createElement("div");
-                lyric_block.setAttribute("id","proj_lyric_block");
+                lyric_block.setAttribute("id","proj_content_block");
                 lyric_block.innerHTML = this.currentSlide;
                 
                 var vidContainer = myNewWindow.document.createElement("div");
@@ -53,8 +60,15 @@
                 vidContainer.appendChild(videoElement);
               myNewWindow.document.body.appendChild(vidContainer);
                         
-                lyricElement = myNewWindow.document.getElementById("proj_lyric_block");
-                
+                lyricElement = myNewWindow.document.getElementById("proj_content_block");
+                     
+        }
+    }
+    
+    function loadContentList(userID) {
+        
+       
+        
     }
     
     function loadLiveSlides(id) {
@@ -62,7 +76,10 @@
         var slideData;
         $.get("SongSlides/loaddata?id="+id, function( data ) {
             slideData = $.parseJSON(data);
-            var slideArr = slideData.content.split("<hr />");
+            bgUrl = slideData.r.resource_url;
+            bgType = slideData.r.resource_type;
+            
+            var slideArr = slideData.s.song_content.split("<hr />");
             var slideContent = "";
             for(var slide in slideArr) {
                 slideContent += "<div class='slide_content'>";
@@ -74,23 +91,22 @@
                 $('.slide_content').click(function() { change_content(this); });
               });
         
-         var loadedSlides = $("#slides").children();
-         
-         //currentSlide = loadedSlides[0];
-         // alert(document.getElementById("slides").childNodes[0]);
-        document.getElementById("slides").children[0].style.backgroundColor = "#A2D3A2";
+         //var loadedSlides = $("#slides").children();
+        $("#slides div:nth-child(1)").css("backgroundColor","#A2D3A2");
+        //document.getElementById("slides").children[0].style.backgroundColor = "#A2D3A2";
         
     }
     
     function change_content(content_element) {
         var content = (content_element != undefined ) ? content_element.innerHTML : "";
-        
+        if(videoElement != undefined) {
+            videoElement.style.display = "block";
+            videoElement.play();
+        }
         if(myNewWindow != null) {
-          //  lyricElement = myNewWindow.document.getElementById("proj_lyric_block");
             lyricElement.innerHTML = content;
         }
-        //previewElement = document.getElementById("lyric_block");        
-        previewElement.innerHTML = content;
+        liveViewPort.innerHTML = content;
 
         var slideChildren = document.getElementById("slides").childNodes;
         for (var i = 0; i < slideChildren.length; i++) {
@@ -100,19 +116,20 @@
           childSlide.style.backgroundColor="white";
         }
         this.currentSlide = content;
-        content_element.style.backgroundColor="#A2D3A2"
+        content_element.style.backgroundColor="#A2D3A2";
     }
     
-    function clearSlide() {
+    function blackScreen() {
         if(myNewWindow != undefined) {
            lyricElement.innerHTML = "";
-           previewElement.innerHTML = "";
+           liveViewPort.innerHTML = "";
+           videoElement.pause();
+           videoElement.style.display = "none";
         }
     }
     
     $(document).ready(function() {
-        previewElement = document.getElementById("lyric_block"); 
+        liveViewPort = document.getElementById("live_content_block"); 
         loadLiveSlides(1);
-        // currentSlide = document.getElementById("slides").children[0].innerHTML;
-        // document.getElementById("slides").children[0].style.backgroundColor = "#A2D3A2";
+        
     });

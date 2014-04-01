@@ -29,7 +29,10 @@ class SongSlidesController extends AppController {
 		$this->layout = 'ajax';
 		$id = $this->request->query['id'];
 		$options = array('conditions' => array('SongSlide.' . $this->SongSlide->primaryKey => $id));
-		$this->set('songSlide', $this->SongSlide->find('first', $options));
+		
+		
+		$this->set('songSlide', $this->SongSlide->getSongSlideById($id));  //find('first', $options));
+		
 	}
 	
 /**
