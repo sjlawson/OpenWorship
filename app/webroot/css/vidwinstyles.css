@@ -11,15 +11,17 @@ z-index: -1000;
 overflow: hidden;
 }
 
-#proj_lyric_block {
-position: relative;
+#proj_content_block {
+    position: relative;
     display: table-cell;
     text-align: center;
     vertical-align: middle;
-    height: 99vh;
-    width: 40%;
+    /*height: 99vh;*/
+    /*width: 40%;*/
     border: none;
     margin: 0 auto;
+    margin-top: auto;
+    margin-bottom: auto;
     
 }
 
@@ -60,29 +62,51 @@ z-index: 1;
 
 #vidPreviewContainer {
     margin: 15px;
-    width: 400px;
-    height: 250px;
+    width: 300px;
+    height: 200px;
     position: relative;
     vertical-align: middle;
     text-align: center;
-    font-size: 16px;
+    font-size: 12px;
     font-weight: bold;
-    float: left;
+    /*float: left;*/
 }
 
-#lyric_block {
+#live_content_block {
     position: relative;
     display: table-cell;
     text-align: center;
     vertical-align: middle;
-    width: 400px;
-    height: 250px;
+    width: 300px;
+    height: 200px;
+    border: 1px dotted #656565;
+}
+
+#vidLiveContainer {
+    margin: 15px;
+    width: 300px;
+    height: 200px;
+    position: relative;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    /*float: left;*/
+}
+
+#preview_content_block {
+    position: relative;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    width: 300px;
+    height: 200px;
     border: 1px dotted #656565;
 }
 
 #service_menu {
     margin: 15px;
-    float: left;
+    /*float: left;*/
     border: 2px inset blue;
     overflow: scroll;
     width: 200px;
@@ -99,7 +123,7 @@ z-index: 1;
 
 #slides {
     margin: 15px;
-    float: left;
+    /*float: left;*/
     border: 2px inset blue;
     overflow: scroll;
     width: 200px;
@@ -113,3 +137,24 @@ z-index: 1;
     margin-bottom: 0px;
     cursor: pointer;
 }
+.state_button {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    text-align: center;
+    position: relative;
+    border: 2px solid;
+    border-radius: 5px;
+    background-color: #99baff;
+    border-color: #99aacc;
+    width: 150px;
+    height: 20px;
+}
+.column {
+    float: left;
+}
+.spacer {
+    height: 25px;
+    width: 25px;
+}
+
