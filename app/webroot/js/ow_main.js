@@ -74,7 +74,7 @@
     function loadLiveSlides(id) {
         
         var slideData;
-        $.get("SongSlides/loaddata?id="+id, function( data ) {
+        $.get("SongSlides/loaddata?ssid="+id, function( data ) {
             slideData = $.parseJSON(data);
             bgUrl = slideData.r.resource_url;
             bgType = slideData.r.resource_type;

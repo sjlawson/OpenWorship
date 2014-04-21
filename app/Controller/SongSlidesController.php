@@ -27,11 +27,26 @@ class SongSlidesController extends AppController {
 
 	public function loaddata() {
 		$this->layout = 'ajax';
-		$id = $this->request->query['id'];
-		$options = array('conditions' => array('SongSlide.' . $this->SongSlide->primaryKey => $id));
-		
-		
-		$this->set('songSlide', $this->SongSlide->getSongSlideById($id));  //find('first', $options));
+		$ssid = array_key_exists('ssid', $_GET) ? $this->request->query['ssid'] : null;
+		$userId = array_key_exists('userId', $_GET) ? $this->request->query['userId'] : null;
+
+		// need ssid, title
+		if($userId) {
+			$songSlides =  $this->SongSlide->getSongSlidesTitlesByUserId($userId);
+			die(var_dump($songSlides));
+			$songListData = array('ssid'=>$songSlides['_id'], 'title'=>$songSlides['title']);
+		} else {
+			$songListData = null;
+		}
+
+		if($ssid) {
+		  $songSlide = $this->SongSlide->getSongSlideById($ssid);
+		} else {
+		  $songSlide = null;
+		}
+
+		$this->set('songSlide', $songSlide);  //find('first', $options));
+		$this->set('songListData' , $songListData);
 		
 	}
 	

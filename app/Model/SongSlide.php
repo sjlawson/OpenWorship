@@ -58,7 +58,8 @@ class SongSlide extends AppModel {
 		)
 	);
         
-        public function getSongSlideById($id) {
+        public function getSongSlideById($id) 
+	{
             
             $query = "SELECT
                     s.title AS song_title, s.author AS song_author,
@@ -72,5 +73,21 @@ class SongSlide extends AppModel {
             $result = $this->query($query);
             return $result[0];
         }
+
+	/**
+	 * @param $userId
+	 *
+	 */
+	public function getSongSlidesTitlesByUserId($userId) 
+	{
+	    $query = "SELECT _id, title
+		FROM " . $this->tablePrefix . $this->table . "
+		WHERE _user_id = " . $userId . "
+		ORDER BY title";
+
+	    $result = $this->query($query);
+
+	    return $result;
+	}
         
 }
