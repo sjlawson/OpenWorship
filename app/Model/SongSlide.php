@@ -89,5 +89,18 @@ class SongSlide extends AppModel {
 
 	    return $result;
 	}
-        
+
+	public function getSongSlidesByEventID($eventId)
+	{
+	    $query = "SELECT _id, title
+		FROM " . $this->tablePrefix . $this->table ." ss "
+	      ." INNER JOIN " . $this->tablePrefix ."event_songs es "
+	      ."ON es.song_slide_id = ss._id"
+	      ." WHERE es.event_id = ".$eventId;
+	    
+	    $result = $this->query($query);
+
+	    return $result;
+	}
+
 }

@@ -133,3 +133,24 @@
         loadLiveSlides(1);
         
     });
+
+function loadService($serviceId)
+ 	var slideData;
+        $.get("SongSlides/loaddata?serviceId="+id, function( data ) {
+            contentDataArray = $.parseJSON(data);
+
+            bgUrl = slideData.r.resource_url;
+            bgType = slideData.r.resource_type;
+            
+            var slideArr = slideData.s.song_content.split("<hr />");
+            var slideContent = "";
+            for(var slide in slideArr) {
+                slideContent += "<div class='slide_content'>";
+                slideContent += slideArr[slide] != undefined ? slideArr[slide] : "";
+                slideContent += "</div>";
+            }
+            
+            $( "#slides" ).html( slideContent );
+            $('.slide_content').click(function() { change_content(this); });
+        });
+}
