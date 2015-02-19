@@ -1,3 +1,5 @@
+Development Abandoned in favour of Ruby on Rails version: WorshipOnRails
+
 CakePHP
 =======
 
